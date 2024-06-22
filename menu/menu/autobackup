@@ -1,0 +1,106 @@
+#!/bin/bash
+# COLOR VALIDATION
+clear
+RED='\033[0;31m'
+NC='\033[0m'
+gray="\e[1;30m"
+Blue="\033[0;34m"
+green='\033[0;32m'
+grenbo="\e[92;1m"
+YELL='\033[0;33m'
+red() { echo -e "\\033[32;1m${*}\\033[0m"; }
+# Getting
+MYIP=$(curl -sS ipv4.icanhazip.com)
+echo -e "\e[32mloading...\e[0m"
+clear
+IP=$(wget -qO- icanhazip.com)
+dateToday=$(date +"%Y-%m-%d")
+Name=$(curl https://ip.madewgn.my.id/ip | grep $MYIP | awk '{print $2}')
+
+
+
+
+
+
+
+botBackup() {
+    bottoken=$(sed -n '1p' /root/.bckupbot | awk '{print $1}')
+    adminid=$(sed -n '2p' /root/.bckupbot | awk '{print $1}')
+    echo -e "[ ${green}INFO${NC} ] Create password for database"
+	InputPass="madewgn"
+    echo -e "[ ${green}INFO${NC} ] • VPS Data Backup... "
+    sleep 1
+    echo -e "[ ${green}INFO${NC} ] • Directory Created... "
+    mkdir /root/backup &>/dev/null
+    mkdir -p /root/backup/vmess &>/dev/null
+    mkdir -p /root/backup/vless &>/dev/null
+    mkdir -p /root/backup/trojan &>/dev/null
+    mkdir -p /root/backup/ssh &>/dev/null
+    mkdir -p /root/backup/vmess/ip &>/dev/null
+    mkdir -p /root/backup/vless/ip &>/dev/null
+    mkdir -p /root/backup/trojan/ip &>/dev/null
+    mkdir -p /root/backup/ssh/ip &>/dev/null
+    sleep 1
+    echo -e "[ ${green}INFO${NC} ] • VPS Data Backup Start Now... "
+    echo -e "[ ${green}INFO${NC} ] • Please Wait , Backup In Process Now... "
+    sleep 1
+	cp /etc/passwd backup/ &>/dev/null
+	echo -e "[ ${green}INFO${NC} ] • Backup passwd data..."
+	sleep 1
+	cp /etc/group backup/ &>/dev/null
+	echo -e "[ ${green}INFO${NC} ] • Backup group data..."
+	sleep 1
+	cp /etc/shadow backup/ &>/dev/null
+	echo -e "[ ${green}INFO${NC} ] • Backup shadow data..."
+	sleep 1
+	cp /etc/gshadow backup/ &>/dev/null
+	echo -e "[ ${green}INFO${NC} ] • Backup gshadow data..."
+	sleep 1
+    cp -r /var/lib/kyt/ backup/kyt &>/dev/null
+    cp -r /etc/xray backup/xray &>/dev/null
+    cp -r /var/www/html backup/html &>/dev/null
+	echo -e "[ ${green}INFO${NC} ] • Backup user data..."
+	sleep 1
+    cp /etc/vmess/* backup/vmess/quota/ &>/dev/null
+    cp /etc/vless/* backup/vless/quota/ &>/dev/null
+    cp /etc/trojan/* backup/trojan/quota/ &>/dev/null
+    cp /etc/kyt/limit/vmess/ip/* backup/vmess/ip/ &>/dev/null
+    cp /etc/kyt/limit/vless/ip/* backup/vless/ip/ &>/dev/null
+    cp /etc/kyt/limit/trojan/ip/* backup/trojan/ip/ &>/dev/null
+    cp /etc/kyt/limit/ssh/ip/* backup/ssh/ip/ &>/dev/null
+    cp /etc/user/ssh/*.txt backup/ssh/ &>/dev/null
+    cp -r /etc/user backup/user &>/dev/null
+    cd /root &>/dev/null
+    zip -rP "$InputPass" "$IP-$Name-$dateToday.zip" backup >/dev/null 2>&1
+
+    echo -e "[ ${green}INFO${NC} ] • Sending Via Bot... "
+    curl -Ss --request POST \
+        --url "https://api.telegram.org/bot${bottoken}/sendDocument?chat_id=${adminid}&caption=Here Your Backup Today : ${dateToday}" \
+        --header 'content-type: multipart/form-data' \
+        --form document=@"/root/$IP-$Name-$dateToday.zip" >/root/t1
+
+    fileId=$(grep -o '"file_id":"[^"]*' /root/t1 | grep -o '[^"]*$')
+
+    curl -Ss --request GET \
+        --url "https://api.telegram.org/bot${bottoken}/getfile?file_id=${fileId}" >/root/t1
+
+    filePath=$(grep -o '"file_path":"[^"]'* /root/t1 | grep -o '[^"]*$')
+
+    curl -Ss --request GET \
+        --url "https://api.telegram.org/bot${bottoken}/sendMessage?chat_id=${adminid}&text=File ID   : <code>${fileId}</code>&parse_mode=html" &>/dev/null
+    curl -Ss --request GET \
+        --url "https://api.telegram.org/bot${bottoken}/sendMessage?chat_id=${adminid}&text=File Path : <code>${filePath}</code>&parse_mode=html" &>/dev/null
+
+    echo -e "[ ${green}INFO${NC} ] • Completed... "
+
+    rm -rf /root/backup
+    rm -r /root/$IP-$Name-$dateToday.zip
+    rm -f /root/t1
+}
+
+while true; do
+    botBackup    
+    sleep 7200 
+done
+
+
