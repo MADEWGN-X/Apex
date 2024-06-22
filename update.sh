@@ -36,8 +36,8 @@ res1() {
         fi
     done
 
-    wget https://sc.madewgn.my.id/menu/menu.zip
-    wget -q -O /usr/bin/enc "https://sc.madewgn.my.id/encrypt/epro" ; chmod +x /usr/bin/enc
+    wget https://raw.githubusercontent.com/MADEWGN-X/Apex/master/menu/menu.zip
+    wget -q -O /usr/bin/enc "https://raw.githubusercontent.com/MADEWGN-X/Apex/master/encrypt/epro" ; chmod +x /usr/bin/enc
     7z e -paskykenza123 menu.zip
     unzip menu.zip
     chmod +x menu/menu/*
@@ -49,7 +49,7 @@ res1() {
     #mv menu/* /usr/local/sbin
     rm -rf menu.zip
     rm -rf update.sh
-    wget -qO- fv-tunnel "https://sc.madewgn.my.id/config/fv-tunnel" 
+    wget -qO- fv-tunnel "https://raw.githubusercontent.com/MADEWGN-X/Apex/master/config/fv-tunnel" 
     chmod +x fv-tunnel 
     bash fv-tunnel
     rm -rf fv-tunnel

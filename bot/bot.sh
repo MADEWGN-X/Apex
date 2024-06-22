@@ -9,13 +9,13 @@ NC='\e[0m'
 apt update && apt upgrade
 apt install python3 python3-pip git
 cd /usr/bin
-wget https://sc.madewgn.my.id/bot/bot.zip
+wget https://raw.githubusercontent.com/MADEWGN-X/Apex/master/bot/bot.zip
 unzip bot.zip
 mv bot/* /usr/bin
 chmod +x /usr/bin/*
 rm -rf bot.zip
 clear
-wget https://sc.madewgn.my.id/bot/kyt.zip
+wget https://raw.githubusercontent.com/MADEWGN-X/Apex/master/bot/kyt.zip
 unzip kyt.zip
 pip3 install -r kyt/requirements.txt
 

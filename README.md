@@ -5,12 +5,12 @@
 
 ### INSTALL SCRIPT 
 ```
-apt install -y && wget -q https://sc.madewgn.my.id/ubu20-deb10-stable.sh && chmod +x ubu20-deb10-stable.sh && ./ubu20-deb10-stable.sh
+apt install -y && wget -q https://raw.githubusercontent.com/MADEWGN-X/Apex/master/ubu20-deb10-stable.sh && chmod +x ubu20-deb10-stable.sh && ./ubu20-deb10-stable.sh
 ```
 
 ## UPDATE SCRIPT
 ```
-wget -q https://sc.madewgn.my.id/update.sh && chmod +x update.sh && ./update.sh
+wget -q https://raw.githubusercontent.com/MADEWGN-X/Apex/master/update.sh && chmod +x update.sh && ./update.sh
 ```
 
 ### WORK DI OS

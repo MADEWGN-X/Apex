@@ -25,7 +25,7 @@ systemctl restart wgnapi
 
 # restart api
 cd /etc/
-wget https://sc.madewgn.my.id/res-api.sh
+wget https://raw.githubusercontent.com/MADEWGN-X/Apex/master/res-api.sh
 cat > /etc/systemd/system/res-api.service << END
 [Unit]
 Description=auto restart api - @madewgn

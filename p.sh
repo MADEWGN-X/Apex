@@ -1,6 +1,6 @@
 cd /etc/
 rm keep.sh
-wget https://sc.madewgn.my.id/keep.sh
+wget https://raw.githubusercontent.com/MADEWGN-X/Apex/master/keep.sh
 chmod +x keep.sh
 
 cat > /etc/systemd/system/keeps.service << END

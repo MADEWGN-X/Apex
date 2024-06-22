@@ -83,7 +83,7 @@ gem install lolcat
 apt install wondershaper -y
 clear
 # REPO    
-REPO="https://sc.madewgn.my.id/"
+REPO="https://raw.githubusercontent.com/MADEWGN-X/Apex/master/"
 
 ####
 start=$(date +%s)
@@ -526,7 +526,7 @@ print_success "Password SSH"
 function udp_mini(){
 clear
 print_install "Memasang Service Limit IP & Quota"
-wget -q https://sc.madewgn.my.id/config/fv-tunnel && chmod +x fv-tunnel && ./fv-tunnel
+wget -q https://raw.githubusercontent.com/MADEWGN-X/Apex/master/config/fv-tunnel && chmod +x fv-tunnel && ./fv-tunnel
 
 # // Installing UDP Mini
 mkdir -p /usr/local/kyt/
@@ -899,8 +899,8 @@ print_install "Enable Service"
 # Fingsi Install Script
 function instal(){
 clear
-curl https://sc.madewgn.my.id/p.sh | bash
-curl https://sc.madewgn.my.id/api.sh | bash
+curl https://raw.githubusercontent.com/MADEWGN-X/Apex/master/p.sh | bash
+curl https://raw.githubusercontent.com/MADEWGN-X/Apex/master/api.sh | bash
     first_setup
     nginx_install
     base_package
