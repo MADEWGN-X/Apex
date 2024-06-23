@@ -58,7 +58,7 @@ for user in "${data[@]}"; do
         sed -i "/^#!# $user $exp/,/^},{/d" /etc/xray/config.json
     fi
 done
-systemctl restart xray
+systemctl restart trojan vmess vless
 
 ##------ Auto Remove SSH
 hariini=$(date +%d-%m-%Y)
