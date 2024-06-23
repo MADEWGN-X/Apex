@@ -13,6 +13,6 @@ else
     },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
     sed -i '/#vmessgrpc$/a\### '"$user $exp"'\
     },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
-    systemctl restart xray
+    systemctl restart vmess
     echo 'berhasil restart'
 fi
