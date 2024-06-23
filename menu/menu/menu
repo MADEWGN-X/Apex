@@ -110,7 +110,11 @@ clear
 ssh_service=$(/etc/init.d/ssh status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
 dropbear_service=$(/etc/init.d/dropbear status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
 haproxy_service=$(systemctl status haproxy | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
-xray_service=$(systemctl status trojan vmess vless | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+#xray_service=$(systemctl status trojan vmess vless | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+
+trojan_status=$(systemctl is-active trojan)
+vmess_status=$(systemctl is-active vmess)
+vless_status=$(systemctl is-active vless)
 nginx_service=$(systemctl status nginx | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
 #Status
 clear
@@ -140,15 +144,11 @@ fi
 
 
 
-status_xray="🟢"
-
-# Loop melalui setiap baris status
-while IFS= read -r status; do
-    if [[ $status != "running" ]]; then
-        status_xray="🔴"
-        break
-    fi
-done <<< "$services_status"
+if [[ $trojan_status == "active" && $vmess_status == "active" && $vless_status == "active" ]]; then
+    status_xray="🟢"
+else
+    status_xray="🔴"
+fi
 
 # if [[ $xray_service == "running" ]]; then 
 #    status_xray="🟢"
