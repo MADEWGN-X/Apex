@@ -500,10 +500,6 @@ LimitNOFILE=1000000
 WantedBy=multi-user.target
 
 EOF
-
-    systemctl restart trojan
-    systemctl restart vless
-    systemctl restart vmess
     print_success "Konfigurasi Packet"
 }
 
@@ -818,7 +814,7 @@ function ins_restart() {
     systemctl daemon-reload
     systemctl start netfilter-persistent
     systemctl enable --now nginx
-    systemctl enable --now xray
+    systemctl enable --now vmess trojan vless
     systemctl enable --now rc-local
     systemctl enable --now dropbear
     systemctl enable --now openvpn
