@@ -173,7 +173,7 @@ ${vlesslink3}
 
 END
 
-systemctl restart xray
+systemctl restart vless
 systemctl restart nginx
 clear
 echo -e ""

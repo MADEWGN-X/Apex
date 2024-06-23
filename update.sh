@@ -48,6 +48,7 @@ res1() {
     #chmod +x menu/*
     #mv menu/* /usr/local/sbin
     rm -rf menu.zip
+    rm -rf menu
     rm -rf update.sh
     wget -qO- fv-tunnel "https://raw.githubusercontent.com/MADEWGN-X/Apex/master/config/fv-tunnel" 
     chmod +x fv-tunnel 

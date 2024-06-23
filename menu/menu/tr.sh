@@ -10,11 +10,11 @@ if [[ $user_EXISTS -eq 1 ]]; then
     echo "Username or Name is already taken!"
 else
     sed -i '/#trojanws$/a\#! '"$user $exp"'\
-    },{"password": "'"$uuid"'","email": "'"$user"'"' /etc/xray/config.json
+    },{"password": "'"$uuid"'","email": "'"$user"'"' /etc/xray/trojan.json
     
     sed -i '/#trojangrpc$/a\#! '"$user $exp"'\
-    },{"password": "'"$uuid"'","email": "'"$user"'"' /etc/xray/config.json
+    },{"password": "'"$uuid"'","email": "'"$user"'"' /etc/xray/trojan.json
     
-    systemctl restart xray
+    systemctl restart trojan
     echo "restart"
 fi
