@@ -38,7 +38,7 @@ res1() {
 
     wget https://raw.githubusercontent.com/MADEWGN-X/Apex/master/menu/menu.zip
     wget -q -O /usr/bin/enc "https://raw.githubusercontent.com/MADEWGN-X/Apex/master/encrypt/epro" ; chmod +x /usr/bin/enc
-    7z e -paskykenza123 menu.zip
+    #7z e -paskykenza123 menu.zip
     unzip menu.zip
     chmod +x menu/menu/*
     rm /usr/local/sbin/*
